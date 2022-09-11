@@ -32,8 +32,8 @@ class PostsRelationManager extends RelationManager
         return $form
             ->schema([
                 Card::make()->schema([
-                    Select::make('category_id')
-                        ->relationship('category', 'name'),
+                    Select::make('categories_id')
+                        ->relationship('categories', 'name'),
                     TextInput::make('title')->reactive()
                         ->afterStateUpdated(function (Closure $set, $state) {
                             $set('slug', Str::slug($state));

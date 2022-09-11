@@ -39,8 +39,8 @@ class PostResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                    Select::make('category_id')
-                        ->relationship('category', 'name'),
+                    Select::make('categories_id')
+                        ->relationship('categories', 'name'),
                     TextInput::make('title')->reactive()
                     ->afterStateUpdated(function (Closure $set, $state) {
                         $set('slug', Str::slug($state));
@@ -68,7 +68,7 @@ class PostResource extends Resource
                     ->query(fn (Builder $query): Builder => $query->where('is_published', true)),
                 Filter::make('unPublished')
                     ->query(fn (Builder $query): Builder => $query->where('is_published', false)),
-                SelectFilter::make('category')->relationship('category', 'name')
+                SelectFilter::make('categories')->relationship('categories', 'name')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
