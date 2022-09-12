@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\EmployeeResource;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
@@ -20,3 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('test-url', [TestController::class,'test'])->name('test');
+
+Route::get('employees',function () {
+    $employees = Employee::orderBy('last_name','DESC') ->get();
+    return EmployeeResource::collection($employees);
+});
