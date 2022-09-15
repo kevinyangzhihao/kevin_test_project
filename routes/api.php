@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StripeController;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -27,3 +28,6 @@ Route::get('employees',function () {
     $employees = Employee::orderBy('last_name','DESC') ->get();
     return EmployeeResource::collection($employees);
 });
+
+
+Route::post('/webhook', [StripeController::class, 'webhook']);
