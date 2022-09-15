@@ -24,8 +24,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/getSession', [StripeController::class, 'getSession']);
 
+Route::get('/success', function () {
+    return view('success');
+});
+
 Route::get('/cancel', function () {
-    return view('welcome');
+    return view('cancel');
 });
 
 

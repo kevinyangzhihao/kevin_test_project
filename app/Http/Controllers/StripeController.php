@@ -11,12 +11,12 @@ class StripeController extends Controller
 
     public function getSession() {
         $stripe = new StripeClient(
-            env('STRIPE_API_KEY')
+            env('STRIPE_SECRET')
         );
 
         $checkout = $stripe->checkout->sessions->create([
-            'success_url' => 'https://127.0.0.1:8000/success',
-            'cancel_url' => 'https://127.0.0.1:8000/cancel',
+            'success_url' => 'http://127.0.0.1:8000/success',
+            'cancel_url' => 'http://127.0.0.1:8000/cancel',
             'line_items' => [
                 [
                     'price_data' => [
